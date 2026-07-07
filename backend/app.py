@@ -1,16 +1,15 @@
 from flask import Flask
+from config import Config
+from routes.home import home_bp
 
-# Create the Flask application
+# Create Flask application
 app = Flask(__name__)
 
-# Home route
-@app.route("/")
-def home():
-    return {
-        "message": "Welcome to CodeSage AI 🚀",
-        "status": "Backend is running successfully!"
-    }
+# Load configuration
+app.config.from_object(Config)
 
-# Run the application
+# Register Blueprint
+app.register_blueprint(home_bp)
+
 if __name__ == "__main__":
     app.run(debug=True)
