@@ -92,6 +92,7 @@ def login():
         "message": "Login successful.",
         "access_token": access_token
     }), 200
+
 @auth_bp.route("/profile", methods=["GET"])
 @jwt_required()
 def profile():
