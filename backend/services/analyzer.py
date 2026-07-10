@@ -1,25 +1,16 @@
-import subprocess
+from services.pylint_service import run_pylint
+from services.bandit_service import run_bandit
 
 
-def run_pylint(file_path):
-    print("=" * 50)
-    print("Running Pylint on:", file_path)
-    print("=" * 50)
+def analyze_file(file_path):
+    """
+    Runs all available analyzers on a Python file.
+    """
 
-    result = subprocess.run(
-        [
-            "pylint",
-            file_path,
-            "--output-format=text"
-        ],
-        capture_output=True,
-        text=True
-    )
+    pylint_report = run_pylint(file_path)
+    bandit_report = run_bandit(file_path)
 
-    print("Return Code:", result.returncode)
-    print("STDOUT:")
-    print(result.stdout)
-    print("STDERR:")
-    print(result.stderr)
-
-    return result.stdout
+    return {
+        "pylint": pylint_report,
+        "bandit": bandit_report
+    }
