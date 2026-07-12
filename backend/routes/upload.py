@@ -1,10 +1,11 @@
 import os
 
 from flask import Blueprint, request, jsonify
+from flask_jwt_extended import jwt_required
 from werkzeug.utils import secure_filename
 
 from config import Config
-from services.analyzer import run_pylint
+from services.analyzer import analyze_file
 
 upload_bp = Blueprint("upload", __name__)
 
@@ -12,6 +13,8 @@ ALLOWED_EXTENSIONS = {"py", "zip"}
 
 
 def allowed_file(filename):
+    """Check whether the uploaded file has an allowed extension."""
+
     return (
         "." in filename
         and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -19,7 +22,9 @@ def allowed_file(filename):
 
 
 @upload_bp.route("/upload", methods=["POST"])
+@jwt_required()
 def upload_file():
+    """Upload a source-code file and run supported analyzers."""
 
     if "file" not in request.files:
         return jsonify({
@@ -40,6 +45,8 @@ def upload_file():
 
     filename = secure_filename(file.filename)
 
+    os.makedirs(Config.UPLOAD_FOLDER, exist_ok=True)
+
     filepath = os.path.join(
         Config.UPLOAD_FOLDER,
         filename
@@ -47,13 +54,13 @@ def upload_file():
 
     file.save(filepath)
 
-    analysis_result = ""
+    analysis_result = None
 
-    if filename.endswith(".py"):
-        analysis_result = run_pylint(filepath)
+    if filename.lower().endswith(".py"):
+        analysis_result = analyze_file(filepath)
 
     return jsonify({
         "message": "File uploaded successfully.",
         "filename": filename,
-        "pylint_report": analysis_result
+        "analysis": analysis_result
     }), 200
