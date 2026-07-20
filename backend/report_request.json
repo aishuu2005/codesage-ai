@@ -1,0 +1,15 @@
+{
+  "filename": "hello.py",
+  "analysis": {
+    "summary": {
+      "quality_score": "0.00/10",
+      "security_issues": 0,
+      "complexity": "No functions or classes found to analyze",
+      "functions_analyzed": 0,
+      "average_complexity": null
+    },
+    "pylint": "************* Module hello\nuploads\\hello.py:6:0: C0304: Final newline missing (missing-final-newline)\nuploads\\hello.py:1:0: C0114: Missing module docstring (missing-module-docstring)\nuploads\\hello.py:3:0: C0103: Constant name \"a\" doesn't conform to UPPER_CASE naming style (invalid-name)\nuploads\\hello.py:4:0: C0103: Constant name \"b\" doesn't conform to UPPER_CASE naming style (invalid-name)\n\n------------------------------------------------------------------\nYour code has been rated at 0.00/10\n",
+    "bandit": "Run started...\nNo issues identified.",
+    "radon": "No functions or classes found to analyze."
+  }
+}
