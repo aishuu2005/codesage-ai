@@ -1,0 +1,31 @@
+### Home
+GET http://127.0.0.1:5000/
+
+
+### Register
+POST http://127.0.0.1:5000/register
+Content-Type: application/json
+
+{
+    "username": "harshitha",
+    "email": "harshitha@gmail.com",
+    "password": "123456"
+}
+
+
+### Login
+POST http://127.0.0.1:5000/login
+Content-Type: application/json
+
+{
+    "email": "harshitha@gmail.com",
+    "password": "123456"
+}
+### Profile
+GET http://127.0.0.1:5000/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc4NDIzMjY2OCwianRpIjoiNjMwMGFkNTktNTJmOS00YjUwLWE1ZGQtZDc0ZjM3ZmZkY2Q5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjgiLCJuYmYiOjE3ODQyMzI2NjgsImNzcmYiOiI0Njg1YTY1YS00NWM3LTQwOTItYThkNS03ODMyYjJmMjlmNjkiLCJleHAiOjE3ODQyMzM1Njh9.LpuxKshjR6lAWwMcipB6xm-OhoGDZQ2_aezVfxV2WPk
+
+### Profile
+GET http://127.0.0.1:5000/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc4NDIzMjY2OCwianRpIjoiNjMwMGFkNTktNTJmOS00YjUwLWE1ZGQtZDc0ZjM3ZmZkY2Q5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjgiLCJuYmYiOjE3ODQyMzI2NjgsImNzcmYiOiI0Njg1YTY1YS00NWM3LTQwOTItYThkNS03ODMyYjJmMjlmNjkiLCJleHAiOjE3ODQyMzM1Njh9.LpuxKshjR6lAWwMcipB6xm-OhoGDZQ2_aezVfxV2WPk
+
